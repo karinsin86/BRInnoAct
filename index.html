@@ -47,16 +47,34 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+      gap: 18px;
       margin-bottom: 20px;
     }
 
     .category {
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 18px;
       background: var(--card);
       box-shadow: var(--shadow);
       overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      position: relative;
+    }
+
+    .category::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 5px;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .category:hover {
+      transform: translateY(-2px);
+      border-color: #bfd2f8;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.14);
     }
 
     .category-btn {
@@ -64,27 +82,35 @@
       border: 0;
       background: transparent;
       text-align: left;
-      padding: 20px 18px 18px;
+      padding: 26px 22px 24px;
+      min-height: 120px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 18px;
+      gap: 14px;
+      font-size: 19px;
       font-weight: 600;
       color: var(--text);
     }
 
     .icon {
-      font-size: 36px;
-      width: 42px;
+      font-size: 42px;
+      width: 48px;
       text-align: center;
       line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.12));
+    }
+
+    .category-label {
+      line-height: 1.4;
+      letter-spacing: -0.01em;
     }
 
     .arrow {
       margin-left: auto;
       color: var(--subtext);
       transition: transform 0.2s ease;
+      font-size: 15px;
     }
 
     .category.open .arrow {
@@ -237,40 +263,40 @@
       <article class="category">
         <button class="category-btn" type="button" data-target="coding-convention">
           <span class="icon">📘</span>
-          <span>Coding Convention</span>
+          <span class="category-label">Coding Convention</span>
           <span class="arrow">▶</span>
         </button>
         <div class="items" id="coding-convention">
-          <a href="./1-1.%20Convention%20Guide.md" data-doc="./1-1.%20Convention%20Guide.md">1-1. Convention Guide</a>
-          <a href="./1-2.%20Convention%20Meeting%20Notes.md" data-doc="./1-2.%20Convention%20Meeting%20Notes.md">1-2. Convention Meeting Notes</a>
+          <a href="./1-1.%20Convention%20Guide.md" data-doc="./1-1.%20Convention%20Guide.md">코딩 컨벤션 가이드</a>
+          <a href="./1-2.%20Convention%20Meeting%20Notes.md" data-doc="./1-2.%20Convention%20Meeting%20Notes.md">컨벤션 회의록록</a>
         </div>
       </article>
 
       <article class="category">
         <button class="category-btn" type="button" data-target="control-manager">
           <span class="icon">🧩</span>
-          <span>EDAS ControlManager (Pair Programming, TDD)</span>
+          <span class="category-label">EDAS ControlManager (Pair Programming, TDD)</span>
           <span class="arrow">▶</span>
         </button>
         <div class="items" id="control-manager">
-          <a href="./2-1.%20Manager%20RoadMap.md" data-doc="./2-1.%20Manager%20RoadMap.md">2-1. Manager RoadMap</a>
-          <a href="./2-2.%20Manager%20Developer%20Role.md" data-doc="./2-2.%20Manager%20Developer%20Role.md">2-2. Manager Developer Role</a>
-          <a href="./2-3.%20Manger%20Problem%20Note.md" data-doc="./2-3.%20Manger%20Problem%20Note.md">2-3. Manger Problem Note</a>
-          <a href="./2-4.%20System%20Diagram.md" data-doc="./2-4.%20System%20Diagram.md">2-4. System Diagram</a>
+          <a href="./2-1.%20Manager%20RoadMap.md" data-doc="./2-1.%20Manager%20RoadMap.md">프로그램 로드맵</a>
+          <a href="./2-2.%20Manager%20Developer%20Role.md" data-doc="./2-2.%20Manager%20Developer%20Role.md">개발자 역할 분담</a>
+          <a href="./2-3.%20Manger%20Problem%20Note.md" data-doc="./2-3.%20Manger%20Problem%20Note.md">진행 이슈 회고록</a>
+          <a href="./2-4.%20System%20Diagram.md" data-doc="./2-4.%20System%20Diagram.md">시스템 다이어그램</a>
         </div>
       </article>
 
       <article class="category">
         <button class="category-btn" type="button" data-target="relay-wcf-service">
           <span class="icon">🔌</span>
-          <span>EDAS Relay WCF Service (Pair Programming, TDD)</span>
+          <span class="category-label">EDAS Relay WCF Service (Pair Programming, TDD)</span>
           <span class="arrow">▶</span>
         </button>
         <div class="items" id="relay-wcf-service">
-          <a href="./3-1.%20WCF%20RoadMap.md" data-doc="./3-1.%20WCF%20RoadMap.md">3-1. WCF RoadMap</a>
-          <a href="./3-2.%20WCF%20Developer%20Role.md" data-doc="./3-2.%20WCF%20Developer%20Role.md">3-2. WCF Developer Role</a>
-          <a href="./3-3.%20WCF%20Problem%20Note.md" data-doc="./3-3.%20WCF%20Problem%20Note.md">3-3. WCF Problem Note</a>
-          <a href="./3-4.%20System%20Diagram.md" data-doc="./3-4.%20System%20Diagram.md">3-4. System Diagram</a>
+          <a href="./3-1.%20WCF%20RoadMap.md" data-doc="./3-1.%20WCF%20RoadMap.md">프로그램 로드맵</a>
+          <a href="./3-2.%20WCF%20Developer%20Role.md" data-doc="./3-2.%20WCF%20Developer%20Role.md">개발자 역할 분담</a>
+          <a href="./3-3.%20WCF%20Problem%20Note.md" data-doc="./3-3.%20WCF%20Problem%20Note.md">진행 이슈 회고록<</a>
+          <a href="./3-4.%20System%20Diagram.md" data-doc="./3-4.%20System%20Diagram.md">시스템 다이어그램</a>
         </div>
       </article>
     </section>
@@ -286,7 +312,7 @@
 
     <footer class="site-footer">
       <div class="line-1">2025.11 ~ 2026.04 BestReviewr Innovation Activities</div>
-      <div>Samsung Display MES Team, Pro. Hongyeol Choi</div>
+      <div>Samsung Display MES Team, Pro. Hongyul Choi</div>
     </footer>
   </main>
 
