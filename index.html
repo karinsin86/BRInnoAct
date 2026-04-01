@@ -48,6 +48,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
+      margin-bottom: 20px;
     }
 
     .category {
@@ -112,6 +113,85 @@
     .items a:hover {
       background: #eaf1ff;
     }
+
+    .viewer {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      line-height: 1.65;
+    }
+
+    .viewer-placeholder {
+      color: var(--subtext);
+      margin: 0;
+    }
+
+    .viewer h1,
+    .viewer h2,
+    .viewer h3 {
+      margin-top: 1.2em;
+      margin-bottom: 0.45em;
+      line-height: 1.3;
+    }
+
+    .viewer p,
+    .viewer ul,
+    .viewer ol,
+    .viewer blockquote {
+      margin-top: 0.45em;
+      margin-bottom: 0.8em;
+    }
+
+    .viewer code {
+      background: #f1f5f9;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.92em;
+    }
+
+    .viewer pre {
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 14px;
+      border-radius: 10px;
+      overflow: auto;
+    }
+
+    .viewer pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+
+    .viewer table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 0.95em;
+    }
+
+    .viewer th,
+    .viewer td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    .viewer th {
+      background: #f8fbff;
+      text-align: left;
+    }
+
+    .viewer blockquote {
+      border-left: 4px solid #cddafc;
+      padding: 4px 12px;
+      color: #334155;
+      background: #f8faff;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -127,8 +207,8 @@
           <span class="arrow">▶</span>
         </button>
         <div class="items" id="coding-convention">
-          <a href="./1-1.%20Convention%20Guide.md">1-1. Convention Guide</a>
-          <a href="./1-2.%20Convention%20Meeting%20Notes.md">1-2. Convention Meeting Notes</a>
+          <a href="./1-1.%20Convention%20Guide.md" data-doc="./1-1.%20Convention%20Guide.md">1-1. Convention Guide</a>
+          <a href="./1-2.%20Convention%20Meeting%20Notes.md" data-doc="./1-2.%20Convention%20Meeting%20Notes.md">1-2. Convention Meeting Notes</a>
         </div>
       </article>
 
@@ -139,10 +219,10 @@
           <span class="arrow">▶</span>
         </button>
         <div class="items" id="control-manager">
-          <a href="./2-1.%20Manager%20RoadMap.md">2-1. Manager RoadMap</a>
-          <a href="./2-2.%20Manager%20Developer%20Role.md">2-2. Manager Developer Role</a>
-          <a href="./2-3.%20Manger%20Problem%20Note.md">2-3. Manger Problem Note</a>
-          <a href="./2-4.%20System%20Diagram.md">2-4. System Diagram</a>
+          <a href="./2-1.%20Manager%20RoadMap.md" data-doc="./2-1.%20Manager%20RoadMap.md">2-1. Manager RoadMap</a>
+          <a href="./2-2.%20Manager%20Developer%20Role.md" data-doc="./2-2.%20Manager%20Developer%20Role.md">2-2. Manager Developer Role</a>
+          <a href="./2-3.%20Manger%20Problem%20Note.md" data-doc="./2-3.%20Manger%20Problem%20Note.md">2-3. Manger Problem Note</a>
+          <a href="./2-4.%20System%20Diagram.md" data-doc="./2-4.%20System%20Diagram.md">2-4. System Diagram</a>
         </div>
       </article>
 
@@ -153,18 +233,25 @@
           <span class="arrow">▶</span>
         </button>
         <div class="items" id="relay-wcf-service">
-          <a href="./3-1.%20WCF%20RoadMap.md">3-1. WCF RoadMap</a>
-          <a href="./3-2.%20WCF%20Developer%20Role.md">3-2. WCF Developer Role</a>
-          <a href="./3-3.%20WCF%20Problem%20Note.md">3-3. WCF Problem Note</a>
-          <a href="./3-4.%20System%20Diagram.md">3-4. System Diagram</a>
+          <a href="./3-1.%20WCF%20RoadMap.md" data-doc="./3-1.%20WCF%20RoadMap.md">3-1. WCF RoadMap</a>
+          <a href="./3-2.%20WCF%20Developer%20Role.md" data-doc="./3-2.%20WCF%20Developer%20Role.md">3-2. WCF Developer Role</a>
+          <a href="./3-3.%20WCF%20Problem%20Note.md" data-doc="./3-3.%20WCF%20Problem%20Note.md">3-3. WCF Problem Note</a>
+          <a href="./3-4.%20System%20Diagram.md" data-doc="./3-4.%20System%20Diagram.md">3-4. System Diagram</a>
         </div>
       </article>
     </section>
+
+    <section id="viewer" class="viewer">
+      <p class="viewer-placeholder">문서를 클릭하면 Markdown Preview 형식으로 이 영역에 표시됩니다.</p>
+    </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     (function () {
       var buttons = document.querySelectorAll(".category-btn");
+      var docLinks = document.querySelectorAll("[data-doc]");
+      var viewer = document.getElementById("viewer");
 
       buttons.forEach(function (btn) {
         btn.addEventListener("click", function () {
@@ -172,6 +259,71 @@
           card.classList.toggle("open");
         });
       });
+
+      function renderMessage(message) {
+        viewer.innerHTML = "";
+        var p = document.createElement("p");
+        p.className = "viewer-placeholder";
+        p.textContent = message;
+        viewer.appendChild(p);
+      }
+
+      function openParentCategory(link) {
+        var items = link.closest(".items");
+        if (!items) {
+          return;
+        }
+        var card = items.closest(".category");
+        if (card) {
+          card.classList.add("open");
+        }
+      }
+
+      function loadMarkdown(path) {
+        renderMessage("문서를 불러오는 중입니다...");
+
+        fetch(path)
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("HTTP " + response.status);
+            }
+            return response.text();
+          })
+          .then(function (markdown) {
+            viewer.innerHTML = marked.parse(markdown);
+            history.replaceState(null, "", "#doc=" + encodeURIComponent(path));
+            window.scrollTo({ top: viewer.offsetTop - 16, behavior: "smooth" });
+          })
+          .catch(function () {
+            renderMessage("문서를 불러오지 못했습니다. 경로 또는 권한을 확인해 주세요.");
+          });
+      }
+
+      docLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          var path = link.getAttribute("data-doc");
+          if (!path) {
+            return;
+          }
+          loadMarkdown(path);
+        });
+      });
+
+      var hash = window.location.hash || "";
+      if (hash.indexOf("#doc=") === 0) {
+        var encodedPath = hash.substring(5);
+        try {
+          var pathFromHash = decodeURIComponent(encodedPath);
+          var targetLink = document.querySelector('[data-doc="' + pathFromHash + '"]');
+          if (targetLink) {
+            openParentCategory(targetLink);
+            loadMarkdown(pathFromHash);
+          }
+        } catch (error) {
+          renderMessage("잘못된 문서 경로입니다.");
+        }
+      }
     })();
   </script>
 </body>
