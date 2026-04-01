@@ -1,1 +1,178 @@
-test
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BR Innovation Activities</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --subtext: #4b5563;
+      --primary: #2563eb;
+      --border: #dbe3ef;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .title {
+      margin: 0 0 8px;
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .desc {
+      margin: 0 0 28px;
+      color: var(--subtext);
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .category {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .category-btn {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      text-align: left;
+      padding: 18px 18px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .icon {
+      font-size: 24px;
+      width: 32px;
+      text-align: center;
+    }
+
+    .arrow {
+      margin-left: auto;
+      color: var(--subtext);
+      transition: transform 0.2s ease;
+    }
+
+    .category.open .arrow {
+      transform: rotate(90deg);
+    }
+
+    .items {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 10px 16px 14px;
+      background: #fafcff;
+    }
+
+    .category.open .items {
+      display: block;
+    }
+
+    .items a {
+      display: block;
+      text-decoration: none;
+      color: #0f3d95;
+      padding: 8px 8px;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .items a:hover {
+      background: #eaf1ff;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1 class="title">BR Innovation Activities</h1>
+    <p class="desc">아래 카테고리를 클릭하면 세부 문서를 볼 수 있습니다.</p>
+
+    <section class="grid">
+      <article class="category">
+        <button class="category-btn" type="button" data-target="coding-convention">
+          <span class="icon">📘</span>
+          <span>Coding Convention</span>
+          <span class="arrow">▶</span>
+        </button>
+        <div class="items" id="coding-convention">
+          <a href="./1-1.%20Convention%20Guide.md">1-1. Convention Guide</a>
+          <a href="./1-2.%20Convention%20Meeting%20Notes.md">1-2. Convention Meeting Notes</a>
+        </div>
+      </article>
+
+      <article class="category">
+        <button class="category-btn" type="button" data-target="control-manager">
+          <span class="icon">🧩</span>
+          <span>EDAS ControlManager (Pair Programming, TDD)</span>
+          <span class="arrow">▶</span>
+        </button>
+        <div class="items" id="control-manager">
+          <a href="./2-1.%20Manager%20RoadMap.md">2-1. Manager RoadMap</a>
+          <a href="./2-2.%20Manager%20Developer%20Role.md">2-2. Manager Developer Role</a>
+          <a href="./2-3.%20Manger%20Problem%20Note.md">2-3. Manger Problem Note</a>
+          <a href="./2-4.%20System%20Diagram.md">2-4. System Diagram</a>
+        </div>
+      </article>
+
+      <article class="category">
+        <button class="category-btn" type="button" data-target="relay-wcf-service">
+          <span class="icon">🔌</span>
+          <span>EDAS Relay WCF Service (Pair Programming, TDD)</span>
+          <span class="arrow">▶</span>
+        </button>
+        <div class="items" id="relay-wcf-service">
+          <a href="./3-1.%20WCF%20RoadMap.md">3-1. WCF RoadMap</a>
+          <a href="./3-2.%20WCF%20Developer%20Role.md">3-2. WCF Developer Role</a>
+          <a href="./3-3.%20WCF%20Problem%20Note.md">3-3. WCF Problem Note</a>
+          <a href="./3-4.%20System%20Diagram.md">3-4. System Diagram</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll(".category-btn");
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var card = btn.closest(".category");
+          card.classList.toggle("open");
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
