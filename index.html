@@ -247,11 +247,22 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
     (function () {
       var buttons = document.querySelectorAll(".category-btn");
       var docLinks = document.querySelectorAll("[data-doc]");
       var viewer = document.getElementById("viewer");
+      var mermaidReady = false;
+
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: "loose",
+          theme: "default"
+        });
+        mermaidReady = true;
+      }
 
       buttons.forEach(function (btn) {
         btn.addEventListener("click", function () {
@@ -291,12 +302,36 @@
           })
           .then(function (markdown) {
             viewer.innerHTML = marked.parse(markdown);
+            renderMermaidBlocks(viewer);
             history.replaceState(null, "", "#doc=" + encodeURIComponent(path));
             window.scrollTo({ top: viewer.offsetTop - 16, behavior: "smooth" });
           })
           .catch(function () {
             renderMessage("문서를 불러오지 못했습니다. 경로 또는 권한을 확인해 주세요.");
           });
+      }
+
+      function renderMermaidBlocks(container) {
+        var mermaidNodes = container.querySelectorAll("pre > code.language-mermaid");
+        if (mermaidNodes.length === 0) {
+          return;
+        }
+
+        mermaidNodes.forEach(function (codeNode) {
+          var pre = codeNode.parentElement;
+          var graphText = codeNode.textContent || "";
+          var host = document.createElement("div");
+          host.className = "mermaid";
+          host.textContent = graphText;
+
+          if (pre && pre.parentNode) {
+            pre.parentNode.replaceChild(host, pre);
+          }
+        });
+
+        if (mermaidReady) {
+          mermaid.run({ nodes: container.querySelectorAll(".mermaid") });
+        }
       }
 
       docLinks.forEach(function (link) {
