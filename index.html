@@ -64,7 +64,7 @@
       border: 0;
       background: transparent;
       text-align: left;
-      padding: 18px 18px 16px;
+      padding: 20px 18px 18px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -75,9 +75,10 @@
     }
 
     .icon {
-      font-size: 24px;
-      width: 32px;
+      font-size: 36px;
+      width: 42px;
       text-align: center;
+      line-height: 1;
     }
 
     .arrow {
@@ -121,11 +122,28 @@
       box-shadow: var(--shadow);
       padding: 20px;
       line-height: 1.65;
+      min-height: 340px;
     }
 
     .viewer-placeholder {
       color: var(--subtext);
       margin: 0;
+    }
+
+    .viewer-intro {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      min-height: 280px;
+      color: var(--subtext);
+      padding: 12px;
+    }
+
+    .viewer-intro strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 6px;
+      font-size: 18px;
     }
 
     .viewer h1,
@@ -192,6 +210,22 @@
       background: #f8faff;
       border-radius: 4px;
     }
+
+    .site-footer {
+      margin-top: 22px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fbfdff;
+      padding: 14px 16px;
+      color: #5b6472;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .site-footer .line-1 {
+      font-weight: 600;
+      color: #364152;
+    }
   </style>
 </head>
 <body>
@@ -242,8 +276,18 @@
     </section>
 
     <section id="viewer" class="viewer">
-      <p class="viewer-placeholder">문서를 클릭하면 Markdown Preview 형식으로 이 영역에 표시됩니다.</p>
+      <div class="viewer-intro">
+        <div>
+          <strong>Select a document to preview</strong>
+          <p class="viewer-placeholder">Click one of the categories above to open detailed markdown content.</p>
+        </div>
+      </div>
     </section>
+
+    <footer class="site-footer">
+      <div class="line-1">2025.11 ~ 2026.04 BestReviewr Innovation Activities</div>
+      <div>Samsung Display MES Team, Pro. Hongyeol Choi</div>
+    </footer>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
